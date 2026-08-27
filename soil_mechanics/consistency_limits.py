@@ -1,7 +1,4 @@
-"""
-Consistency Limits
-Basic Atterberg limits calculations for geotechnical engineering.
-"""
+"""Basic Atterberg limits calculations for soil mechanics."""
 
 
 def plasticity_index(liquid_limit, plastic_limit):
@@ -9,20 +6,14 @@ def plasticity_index(liquid_limit, plastic_limit):
     return liquid_limit - plastic_limit
 
 
-def liquidity_index(natural_water_content, plastic_limit, plasticity_index_value):
+def liquidity_index(water_content, plastic_limit, plasticity_index_value):
     """Calculate liquidity index (LI)."""
-    return (
-        (natural_water_content - plastic_limit)
-        / plasticity_index_value
-    )
+    return (water_content - plastic_limit) / plasticity_index_value
 
 
-def consistency_index(liquid_limit, natural_water_content, plasticity_index_value):
+def consistency_index(liquid_limit, water_content, plasticity_index_value):
     """Calculate consistency index (CI)."""
-    return (
-        (liquid_limit - natural_water_content)
-        / plasticity_index_value
-    )
+    return (liquid_limit - water_content) / plasticity_index_value
 
 
 def shrinkage_index(plastic_limit, shrinkage_limit):
