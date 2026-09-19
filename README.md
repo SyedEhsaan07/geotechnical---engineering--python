@@ -1,27 +1,31 @@
-"""
-Soil Phase Relationships
-Basic calculations for geotechnical engineering.
-"""
+# Geotechnical Engineering (Python)
 
-def water_content(mass_water, mass_dry_soil):
-    return (mass_water / mass_dry_soil) * 100
+Simple, reusable Python functions for common geotechnical engineering calculations.
 
+## Included modules
 
-def void_ratio(porosity):
-    return porosity / (1 - porosity)
+- `soil_mechanics.phase_relationships`
+  - Water content
+  - Void ratio / porosity conversions
+  - Degree of saturation
+  - Dry unit weight
+- `soil_mechanics.consistency_limits`
+  - Plasticity index
+  - Liquidity index
+  - Consistency index
+  - Shrinkage index
 
+## Quick example
 
-def porosity(void_ratio):
-    return void_ratio / (1 + void_ratio)
+```python
+from soil_mechanics.phase_relationships import water_content
+from soil_mechanics.consistency_limits import plasticity_index
 
+w = water_content(20, 100)              # 20%
+pi = plasticity_index(45, 25)           # 20
+```
 
-def degree_of_saturation(water_content, specific_gravity, void_ratio):
-    return (water_content * specific_gravity) / void_ratio
+## Notes
 
-
-def dry_unit_weight(specific_gravity, void_ratio, gamma_w=9.81):
-    return (specific_gravity * gamma_w) / (1 + void_ratio)
-
-
-if __name__ == "__main__":
-    print("Soil Phase Relationships Calculator")
+- Inputs are expected in standard geotechnical units and conventions described in function docstrings.
+- This repository is intended as a lightweight educational/reference toolkit.
