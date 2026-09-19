@@ -1,5 +1,5 @@
 """
-Soil phase-relation calculations for geotechnical engineering.
+Soil phase-relationship calculations for geotechnical engineering.
 """
 
 
@@ -63,3 +63,33 @@ def dry_unit_weight(specific_gravity, void_ratio, gamma_w=9.81):
     if gamma_w <= 0:
         raise ValueError("gamma_w must be greater than 0.")
     return (specific_gravity * gamma_w) / (1 + void_ratio)
+
+
+def saturated_unit_weight(specific_gravity, void_ratio, gamma_w=9.81):
+    """
+    Calculate saturated unit weight, γsat (kN/m³).
+
+    γsat = ((Gs + e) / (1 + e)) × γw
+    """
+    if specific_gravity <= 0:
+        raise ValueError("specific_gravity must be greater than 0.")
+    if void_ratio < 0:
+        raise ValueError("void_ratio must be non-negative.")
+    if gamma_w <= 0:
+        raise ValueError("gamma_w must be greater than 0.")
+    return ((specific_gravity + void_ratio) / (1 + void_ratio)) * gamma_w
+
+
+def submerged_unit_weight(specific_gravity, void_ratio, gamma_w=9.81):
+    """
+    Calculate submerged (buoyant) unit weight, γ' (kN/m³).
+
+    γ' = ((Gs - 1) / (1 + e)) × γw
+    """
+    if specific_gravity <= 1:
+        raise ValueError("specific_gravity must be greater than 1 for submerged soils.")
+    if void_ratio < 0:
+        raise ValueError("void_ratio must be non-negative.")
+    if gamma_w <= 0:
+        raise ValueError("gamma_w must be greater than 0.")
+    return ((specific_gravity - 1) / (1 + void_ratio)) * gamma_w
